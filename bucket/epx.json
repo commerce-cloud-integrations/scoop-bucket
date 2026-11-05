@@ -1,0 +1,19 @@
+{
+  "version": "0.3.0",
+  "description": "Command-line client for the Emporix Commerce APIs",
+  "homepage": "https://commerce-cloud-integrations.github.io/emporix-cli/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.3.0/epx_v0.3.0_windows_amd64.zip",
+      "hash": "eb32e391eba10b92f458b02721b2f2b182dbff0a96f4172d9845e2fef8f20c00",
+      "extract_dir": "epx_v0.3.0_windows_amd64"
+    },
+    "arm64": {
+      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.3.0/epx_v0.3.0_windows_arm64.zip",
+      "hash": "8eaabf6f1d0afbf68a6f4367340c85a2abb781f033ef44e6b10fbac00846a169",
+      "extract_dir": "epx_v0.3.0_windows_arm64"
+    }
+  },
+  "bin": "epx.exe"
+}
