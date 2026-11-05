@@ -1,0 +1,45 @@
+name: update
+
+# Copies the manifest of the latest epx release into bucket/epx.json: the release asset epx.json,
+# which the release of epx writes (https://github.com/commerce-cloud-integrations/emporix-cli).
+# Runs every hour and on demand (gh workflow run update.yml).
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Copy the manifest of the latest release
+        run: |
+          set -euo pipefail
+          new="$RUNNER_TEMP/epx.json"
+          curl -fsSL --proto '=https' --proto-redir '=https' --retry 3 -o "$new" \
+            https://github.com/commerce-cloud-integrations/emporix-cli/releases/latest/download/epx.json
+          jq -e ".version and .architecture[\"64bit\"].hash and .architecture.arm64.hash and .bin == \"epx.exe\"" "$new" >/dev/null
+          if cmp -s "$new" bucket/epx.json; then
+            echo "bucket/epx.json is up to date"
+            exit 0
+          fi
+          version=$(sed -n 's|.*/releases/download/v\([0-9][0-9.]*\)/.*|\1|p' "$new" | head -n 1)
+          [ -n "$version" ] || { echo "epx.json names no release" >&2; exit 1; }
+          mkdir -p "$(dirname bucket/epx.json)"
+          cp "$new" bucket/epx.json
+          git add bucket/epx.json
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "epx $version"
+          git push
