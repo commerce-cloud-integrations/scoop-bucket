@@ -1,18 +1,18 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Command-line client for the Emporix Commerce APIs",
   "homepage": "https://commerce-cloud-integrations.github.io/emporix-cli/",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_windows_amd64.zip",
-      "hash": "f888a1a11b4e42a6fa400a8bc4ec11d70e75c92860e7612f5821a1009919de42",
-      "extract_dir": "epx_v0.4.0_windows_amd64"
+      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_windows_amd64.zip",
+      "hash": "e001f476ab11d443eb735d0158d7fcf7d6d803ef978d264ca20df5b0a375ace2",
+      "extract_dir": "epx_v0.5.0_windows_amd64"
     },
     "arm64": {
-      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_windows_arm64.zip",
-      "hash": "1486f71196aa08cdf57b539048efefb7f82569d6cb44c330212e5162f06d374c",
-      "extract_dir": "epx_v0.4.0_windows_arm64"
+      "url": "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_windows_arm64.zip",
+      "hash": "71d744c0938a8ab2c2aa444b89bc87c78bc3771a83ec59422b3e0c4431f0aea1",
+      "extract_dir": "epx_v0.5.0_windows_arm64"
     }
   },
   "bin": "epx.exe"
